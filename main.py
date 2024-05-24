@@ -3,7 +3,7 @@ from test import Encounter
 
 class Thing:
     def __init__(self, name, hp, damage, hitrate, speed):
-        self.health = hp
+        self.hp = hp
         self.name = name
         self.damage = damage 
         self.hitrate = hitrate
@@ -25,23 +25,10 @@ enterName = input("enter a name: ")
 
 Player = Thing(enterName, 50, 0, 0, 5)
 
-#def Encounter(Enemy):
-    #print(f"You have encountered a/an {Enemy}, it has {Enemy.health} health")
-    #hasHeal = True
-    #if Player.speed > Enemy.speed:
-        #print("Your turn first")
-        #while Player.health > 0 and Enemy.health > 0:
-            #turnChoice = input("Will you attack or use your 1 healing potion?: ")
-            #if turnChoice == "attack":
-                #hit = random.randint(0, 100)
-                #if hit <= Player.hitrate:
-                    #Enemy.health -= Player.damage
-                    #print(f"You hit {Enemy} for {Player.damage}")
-                #else:
-                    #print("You Missed!")
-                
-    #else:
-        #print(f"{Enemy} attacks first")
+
+Orc = Thing("orc", 75, 12, 60, 8)
+
+enemyList = [Orc]
 
 weaponSelect = input("Select a weapon, Sword, Spear, or Axe: ")
 if weaponSelect == "sword":
@@ -62,9 +49,10 @@ if build == "strength":
     Player.damage += 5
 elif build == "agility":
     Player.speed += 5
+    Player.hitrate += 15
 else:
     print("you didn't select a valid option. rerun the program")
 
 print(f"You are about to venture forth. Your name is {Player.name}, Your weapon is a/an {weaponSelect}, You deal {Player.damage} damage, your hitrate is {Player.hitrate}% and your speed is {Player.speed}")
 
-
+Encounter(Orc, Player)
